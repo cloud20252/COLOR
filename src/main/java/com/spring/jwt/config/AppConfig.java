@@ -147,7 +147,7 @@ public class AppConfig {
         };
     }
     private List<String> getAllowedOrigins() {
-        return Arrays.asList("http://localhost:5173","https://colortrrrrdddd.pages.dev/","https://colortrrrrdddd.pages.dev","https://6752df636570a532523a25be--earnest-pasca-85ced1.netlify.app ","https://6752df636570a532523a25be--earnest-pasca-85ced1.netlify.app/", "https://color-tredo.vercel.app/","https://ok.opticalarc.in/");
+        return Arrays.asList("http://localhost:5173","https://color2.pages.dev/","https://color2.pages.dev","https://colortrrrrdddd.pages.dev/","https://colortrrrrdddd.pages.dev","https://6752df636570a532523a25be--earnest-pasca-85ced1.netlify.app ","https://6752df636570a532523a25be--earnest-pasca-85ced1.netlify.app/", "https://color-tredo.vercel.app/","https://ok.opticalarc.in/");
     }
 
 
