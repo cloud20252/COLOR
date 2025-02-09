@@ -150,7 +150,7 @@ public class GameImp implements IGame {
 
         }else if (colorOrNumber.equals("_7_")){
             gameColorNumber.setType("_THINGNUMBER_");
-            gameColorNumber.setE_ight(true);
+            gameColorNumber.setS_even(true);
 
         }else if (colorOrNumber.equals("_8_")){
             gameColorNumber.setType("_THINGNUMBER_");
@@ -232,7 +232,7 @@ public class GameImp implements IGame {
             chartTrend.get(size-1).setWonColor(wonColor);
             System.err.println(wonObject +" "+ chartTrend.get(size-1));
 
-            chartTrend.get(size-1).setWonTNumber(wonObject+1);
+            chartTrend.get(size-1).setWonTNumber(wonObject);
 
 
 
@@ -778,61 +778,91 @@ public class GameImp implements IGame {
 
 
         }
-        System.out.println("object "+ o_ne +" "+ t_wo +" "+t_hree+" "+ f_our +" "+f_ive +" "+ s_ix +" " +
+        System.out.println("781 object "+ o_ne +" "+ t_wo +" "+t_hree+" "+ f_our +" "+f_ive +" "+ s_ix +" " +
                 ""+s_even +" "+ e_ight +" "+n_ine +" "+t_en +" "+ e_leven+" "+ t_welve );
 
         System.out.println("color"+black +" "+ red +" "+yellow +" "+ zero +" "+one +" "+ two +" "+three +" "+ four +" "+five +" "+ six +" "+ seven+" "+ eight +" "+nine);
+        System.err.println("listOfNumber "+listOfNumber);
 
+        System.err.println("listOfColor "+listOfColor);
 
-
-        System.out.println(listOfObj);
-
-        System.out.println(listOfNumber);
-          System.out.println(listOfColor);
-
-
-
-        Collections.sort(listOfColor);
+        System.err.println("listOfObj "+listOfObj);
         Collections.sort(listOfObj);
+        Collections.sort(listOfColor);
+        Collections.sort(listOfNumber);
+        System.err.println("*******************************after ");
 
-        for (int i=0;i<12;i++){
-            System.out.println(listOfObj.get(i));
-        }
+        System.err.println("listOfNumber "+listOfNumber);
 
-        System.out.println(listOfColor);
-        System.out.println(listOfObj.get(0));
+        System.err.println("listOfColor "+listOfColor);
+
+        System.err.println("listOfObj "+listOfObj);
+
+        System.err.println("*******************************done ");
+
+        System.err.println("listOfNumber "+listOfNumber.get(0)+" "+ getMyWonNumberbyNus(listOfNumbers,listOfNumber.get(0)));
+
+        System.err.println("listOfColor "+listOfColor.get(0)+" "+getMyWonNumberbyNus(listOfColors,listOfColor.get(0)));
+
+        System.err.println("listOfObj "+listOfObj.get(0)+" "+getMyWonNumberbyNus(listOfObjs,listOfObj.get(0)));
+
         objectResult = getMyWonNumberbyNus(listOfObjs,listOfObj.get(0));
+        numberResult = getMyWonNumberbyNus(listOfNumbers,listOfNumber.get(0));
+        colorResult = getMyWonNumberbyNus(listOfColors,listOfColor.get(0));
 
-
-         numberResult = getResultNumber(listOfNumber,listOfNumbers);
-         colorResult = getResultcolor(listOfColor,listOfColors);
-        // System.out.println("Final :"+numberResult + " "+colorResult);
-
-        // System.out.println("460");
-        Integer sumOfNum =sumOfTotalAmount(listOfNumbers,"NUMBER");
-        // System.out.println("460");
-
-        Integer sumOfColor=sumOfTotalAmount(listOfColors,"COLOR");
-        // System.out.println("460");
-
-        Integer sumOfNumP =sumOfProfit(listOfNumbers,numberResult);
-        // System.out.println("460");
-
-        Integer sumOfColorP=sumOfProfitcolor(listOfColors,colorResult);
-        // System.out.println("460");
-        // System.out.println(sumOfNum+" "+sumOfColor );
-//
-//
-
+        saveUserNumber(numberResult);
+        saveUserColor(colorResult);
         saveUserObject(objectResult);
-        saveNumberWonUserAmount(numberResult,colorResult);
+
+        winStatus(colorResult,numberResult,objectResult);
+//        System.out.println(listOfObj);
+//
+//        System.out.println(listOfNumber);
+//          System.out.println(listOfColor);
+//
+//
+//
+//        Collections.sort(listOfColor);
+//        Collections.sort(listOfObj);
+//
+//        for (int i=0;i<12;i++){
+//            System.out.println("799 "+listOfObj.get(i));
+//        }
+//
+//        System.out.println(listOfColor);
+//        System.out.println(listOfObj.get(0));
+//        objectResult = getMyWonNumberbyNus(listOfObjs,listOfObj.get(0));
+//        System.out.println("805 "+objectResult);
+//
+//         numberResult = getResultNumber(listOfNumber,listOfNumbers);
+//         colorResult = getResultcolor(listOfColor,listOfColors);
+//        // System.out.println("Final :"+numberResult + " "+colorResult);
+//
+//        // System.out.println("460");
+//        Integer sumOfNum =sumOfTotalAmount(listOfNumbers,"NUMBER");
+//        // System.out.println("460");
+//
+//        Integer sumOfColor=sumOfTotalAmount(listOfColors,"COLOR");
+//        // System.out.println("460");
+//
+//        Integer sumOfNumP =sumOfProfit(listOfNumbers,numberResult);
+//        // System.out.println("460");
+//
+//        Integer sumOfColorP=sumOfProfitcolor(listOfColors,colorResult);
+//        // System.out.println("460");
+//        // System.out.println(sumOfNum+" "+sumOfColor );
+////
+//
+
+//        saveUserObject(objectResult);
+//        saveNumberWonUserAmount(numberResult,colorResult);
 
                     ProfitGame profit = ProfitGame.builder()
                             .TransactionsDateAndTime(LocalDateTime.now())
-                            .totalAmountColor(sumOfColor)
-                            .totalAmountNumber(sumOfNum)
-                            .profitAmountColor(sumOfColor-sumOfColorP)
-                            .profitAmountNumber(sumOfNum-sumOfNumP)
+                            .totalAmountColor(0)
+                            .totalAmountNumber(0)
+                            .profitAmountColor(0)
+                            .profitAmountNumber(0)
                             .period(String.valueOf(getLivePeriodNo().getPeriod()))
                             .status("SUCCESS")
                             .sourceOfProfit("GAME")
@@ -846,6 +876,73 @@ public class GameImp implements IGame {
         return colorResult +" "+numberResult;
 //        return String.valueOf(colorResult);
     }
+    private void winStatus(Integer color,Integer number,Integer object) {
+
+        List<GameColorNumber> gameColorNumbers = gameColorNumberRepo.findAllWinStatus(false);
+        for (GameColorNumber a : gameColorNumbers){
+            if (a.getType().equals("_COLOR_")){
+                a.setWinStatus(true);
+                a.setWonNumber(color);
+
+            } else if (a.getType().equals("_NUMBER_")) {
+                a.setWinStatus(true);
+                a.setWonNumber(number);
+            }else if (a.getType().equals("_THINGNUMBER_")) {
+                a.setWinStatus(true);
+                a.setWonNumber(object);
+            }
+        }
+
+        gameColorNumberRepo.saveAll(gameColorNumbers);
+
+
+
+    }
+
+    private void saveUserColor(Integer colorResult) {
+
+        //      _YELLOW_  == 101
+//        _RED_   == 102
+//        _BLACK_ == 103
+        List<GameColorNumber> gameColorNumbers = switch (colorResult) {
+            case 101 -> gameColorNumberRepo.findByYellowAndWinStatu();
+            case 102 -> gameColorNumberRepo.findByRedAndWinStatu();
+            case 103 -> gameColorNumberRepo.findByBlackAndWinStatu();
+            default -> Collections.emptyList(); // If objectResult is invalid, return an empty list
+        };
+        updateUserBalancesColor(gameColorNumbers,colorResult);
+
+
+
+    }
+
+    private void saveUserNumber(Integer numberResult) {
+
+        //      _YELLOW_  == 101
+//        _RED_   == 102
+//        _BLACK_ == 103
+        List<GameColorNumber> gameColorNumbers = switch (numberResult){
+            case 0 -> gameColorNumberRepo.findByZeroAndWinStatu();
+            case 1 -> gameColorNumberRepo.findByOneAndWinStatu();
+            case 2 -> gameColorNumberRepo.findByTwoAndWinStatu();
+            case 3 -> gameColorNumberRepo.findByThreeAndWinStatu();
+            case 4 -> gameColorNumberRepo.findByFourAndWinStatu();
+            case 5 -> gameColorNumberRepo.findByFiveAndWinStatu();
+            case 6 -> gameColorNumberRepo.findBySixAndWinStatu();
+            case 7 -> gameColorNumberRepo.findBySevenAndWinStatu();
+            case 8 -> gameColorNumberRepo.findByEightAndWinStatu();
+            case 9 -> gameColorNumberRepo.findByNineAndWinStatu();
+
+            default -> Collections.emptyList(); // If objectResult is invalid, return an empty list
+        };
+        updateUserBalancesNumber(gameColorNumbers,numberResult);
+
+
+    }
+
+
+
+
 
     private void saveUserObject(Integer objectResult) {
 
@@ -864,10 +961,112 @@ public class GameImp implements IGame {
             case 12 -> gameColorNumberRepo.findByTwelveAndWinStatus();
             default -> Collections.emptyList(); // If objectResult is invalid, return an empty list
         };
-
+        System.out.println("867 "+gameColorNumbers);
 // Process gameColorNumbers if not empty
-        updateUserBalances(gameColorNumbers);
+        updateUserBalancesObject(gameColorNumbers,objectResult);
     }
+
+    private void updateUserBalancesColor(List<GameColorNumber> listOfUser,Integer numberResult) {
+        List<User> users = new LinkedList<>();
+        if (listOfUser.isEmpty()) {
+            return; // Exit early if no records are found
+        }
+
+        for (GameColorNumber gameColorNumber : listOfUser){
+
+            try{
+
+                User user = userRepository.findByReferenceId(gameColorNumber.getUserReferenceId()).orElseThrow(()->new RuntimeException("user not found"));
+                Float totalWinBalance = (float) (gameColorNumber.getAmount() * 2);
+
+                System.out.println("*** "+gameColorNumber.getAmount() +" "+totalWinBalance);
+                user.setTotalBalnce(user.getTotalBalnce() + totalWinBalance);
+                users.add(user);
+                gameColorNumber.setWonNumber(numberResult);
+                gameColorNumber.setWinStatus(true);
+            }catch (Exception e){
+                System.err.println(e.getMessage());
+            }
+        }
+
+
+        // Save all users in bulk
+        userRepository.saveAll(users);
+        gameColorNumberRepo.saveAll(listOfUser);
+    }
+
+    private void updateUserBalancesNumber(List<GameColorNumber> listOfUser,Integer numberResult) {
+        List<User> users = new LinkedList<>();
+        if (listOfUser.isEmpty()) {
+            return; // Exit early if no records are found
+        }
+
+        for (GameColorNumber gameColorNumber : listOfUser){
+
+            try{
+
+                User user = userRepository.findByReferenceId(gameColorNumber.getUserReferenceId()).orElseThrow(()->new RuntimeException("user not found"));
+                Float totalWinBalance = (float) (gameColorNumber.getAmount() * 8.5);
+                user.setTotalBalnce(user.getTotalBalnce() + totalWinBalance);
+                users.add(user);
+                gameColorNumber.setWonNumber(numberResult);
+                gameColorNumber.setWinStatus(true);
+
+            }catch (Exception e){
+                System.err.println(e.getMessage());
+            }
+        }
+
+
+        // Save all users in bulk
+        userRepository.saveAll(users);
+        gameColorNumberRepo.saveAll(listOfUser);
+    }
+
+
+
+
+
+    private void updateUserBalancesObject(List<GameColorNumber> listOfUser,Integer numberResult) {
+        List<User> users = new LinkedList<>();
+        if (listOfUser.isEmpty()) {
+            return; // Exit early if no records are found
+        }
+
+        for (GameColorNumber gameColorNumber : listOfUser){
+
+            try{
+
+                User user = userRepository.findByReferenceId(gameColorNumber.getUserReferenceId()).orElseThrow(()->new RuntimeException("user not found"));
+                Float totalWinBalance = (float) (gameColorNumber.getAmount() * 10);
+                user.setTotalBalnce(user.getTotalBalnce() + totalWinBalance);
+                users.add(user);
+                gameColorNumber.setWonNumber(numberResult);
+                gameColorNumber.setWinStatus(true);
+            }catch (Exception e){
+                System.err.println(e.getMessage());
+            }
+        }
+
+
+        // Save all users in bulk
+        userRepository.saveAll(users);
+        gameColorNumberRepo.saveAll(listOfUser);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void updateUserBalances(List<GameColorNumber> gameColorNumbers) {
         if (gameColorNumbers.isEmpty()) {

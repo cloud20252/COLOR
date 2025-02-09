@@ -13,41 +13,80 @@ import java.util.Optional;
 public interface GameColorNumberRepo extends JpaRepository<GameColorNumber, Integer> {
 
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.o_ne = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.o_ne = true AND g.winStatus = false")
     List<GameColorNumber> findByOneAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.t_wo = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.t_wo = true AND g.winStatus = false")
     List<GameColorNumber> findByTwoAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.t_hree = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.t_hree = true AND g.winStatus = false")
     List<GameColorNumber> findByThreeAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.f_our = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.f_our = true AND g.winStatus = false")
     List<GameColorNumber> findByFourAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.f_ive = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.f_ive = true AND g.winStatus = false")
     List<GameColorNumber> findByFiveAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.s_ix = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.s_ix = true AND g.winStatus = false")
     List<GameColorNumber> findBySixAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.s_even = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.s_even = true AND g.winStatus = false")
     List<GameColorNumber> findBySevenAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.e_ight = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.e_ight = true AND g.winStatus = false")
     List<GameColorNumber> findByEightAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.n_ine = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.n_ine = true AND g.winStatus = false")
     List<GameColorNumber> findByNineAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.t_en = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.t_en = true AND g.winStatus = false")
     List<GameColorNumber> findByTenAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.e_leven = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.e_leven = true AND g.winStatus = false")
     List<GameColorNumber> findByElevenAndWinStatus();
 
-    @Query("SELECT g FROM GameColorNumber g WHERE g.t_welve = true AND g.winStatus = true")
+    @Query("SELECT g FROM GameColorNumber g WHERE g.t_welve = true AND g.winStatus = false")
     List<GameColorNumber> findByTwelveAndWinStatus();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.black = true AND g.winStatus = false")
+    List<GameColorNumber> findByBlackAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.red = true AND g.winStatus = false")
+    List<GameColorNumber> findByRedAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.yellow = true AND g.winStatus = false")
+    List<GameColorNumber> findByYellowAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.zero = true AND g.winStatus = false")
+    List<GameColorNumber> findByZeroAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.one = true AND g.winStatus = false")
+    List<GameColorNumber> findByOneAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.two = true AND g.winStatus = false")
+    List<GameColorNumber> findByTwoAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.three = true AND g.winStatus = false")
+    List<GameColorNumber> findByThreeAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.four = true AND g.winStatus = false")
+    List<GameColorNumber> findByFourAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.five = true AND g.winStatus = false")
+    List<GameColorNumber> findByFiveAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.six = true AND g.winStatus = false")
+    List<GameColorNumber> findBySixAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.seven = true AND g.winStatus = false")
+    List<GameColorNumber> findBySevenAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.eight = true AND g.winStatus = false")
+    List<GameColorNumber> findByEightAndWinStatu();
+
+    @Query("SELECT g FROM GameColorNumber g WHERE g.nine = true AND g.winStatus = false")
+    List<GameColorNumber> findByNineAndWinStatu();
 
     @Query("SELECT g FROM GameColorNumber g WHERE " +
             "(:zero IS NULL OR g.zero = :zero) AND " +

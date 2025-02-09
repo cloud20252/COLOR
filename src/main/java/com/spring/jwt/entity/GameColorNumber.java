@@ -29,10 +29,6 @@ public class GameColorNumber {
     private Integer amount;
     @Column(name = "Black", nullable = false, columnDefinition = "BOOLEAN")
     private Boolean black;
-    @Column(name = "Red", nullable = false, columnDefinition = "BOOLEAN")
-    private Boolean red;
-    @Column(name = "Yellow", nullable = false, columnDefinition = "BOOLEAN")
-    private Boolean yellow;
 
 
 
@@ -61,6 +57,10 @@ public class GameColorNumber {
     @Column(name = "t_welve", nullable = false, columnDefinition = "BOOLEAN")
     private Boolean t_welve;
 
+    @Column(name = "Red", nullable = false, columnDefinition = "BOOLEAN")
+    private Boolean red;
+    @Column(name = "Yellow", nullable = false, columnDefinition = "BOOLEAN")
+    private Boolean yellow;
 
     @Column(name = "Zero", nullable = false, columnDefinition = "BOOLEAN")
     private Boolean zero;
